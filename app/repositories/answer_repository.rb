@@ -5,7 +5,7 @@ class AnswerRepository
 
   def self.find_by_id(id)
     answer = Answer.find_by(id: id)
-    answer ? AnswerEntity.new(answer.attributes.symbolize_keys) : nil
+    answer ? AnswerEntity.new(**answer.attributes.symbolize_keys) : nil
   end
 
   def self.find_by_question_id(question_id)

@@ -5,11 +5,11 @@ class QuestionRepository
 
   def self.find_by_id(id)
     question = Question.find_by(id: id)
-    question ? QuestionEntity.new(question.attributes.symbolize_keys) : nil
+    question ? QuestionEntity.new(**question.attributes.symbolize_keys) : nil
   end
 
   def self.create(params)
     question=Question.create(params)
-    QuestionEntity.new(question.attributes.symbolize_keys) if question.perisisted?
+    QuestionEntity.new(**question.attributes.symbolize_keys) if question.perisisted?
   end
 end

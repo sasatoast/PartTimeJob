@@ -5,7 +5,7 @@ class UserRepository
   end
   def self.find_by_id(id)
     user=User.find_by(id: id)
-    user?UserEntity.new(user.attributes.symbolize_keys): nil
+    user ? UserEntity.new(user.attributes.symbolize_keys): nil
   end
   def self.create(params)
     user=User.create(params)

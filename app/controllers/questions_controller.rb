@@ -1,19 +1,20 @@
 class QuestionsController < ApplicationController
   def index
-    reviews = Review.where(job_id: params[:job_id])
-    render json: reviews
-  end 
+    questions = QuestionUseCase.list_questions(params[:job_id])
+    render json: questions
+  end
 
   def create
-    question=Question.new.params(question_params)
-    if question.save
+    question = QuestionUseCase.create_question(question_params)
+    if question
       render json: question, status: :created
-    else 
-      render json: question.error, status: :unprocessable_entity
+    else
+      render json: question.errors, status: :unprocessable_entity
     end
   end
 
   private
+
   def question_params
     params.require(:question).permit(:job_id, :user_id, :content)
   end

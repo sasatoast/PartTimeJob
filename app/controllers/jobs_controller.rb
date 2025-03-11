@@ -16,7 +16,7 @@ class JobsController < ApplicationController
 
   def create
     job = JobUseCase.create_job(job_params)
-    if job.persisted?
+    if job
       render json: job, status: :created
     else
       render json: job.errors, status: :unprocessable_entity
@@ -26,6 +26,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:name, :location, :hourly_wage, :working_hours)
+    params.require(:job).permit(:name, :location, :latitude, :longitude, :wage, :working_time_start, :working_time_end)
   end
 end
