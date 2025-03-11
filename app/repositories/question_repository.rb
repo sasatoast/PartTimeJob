@@ -1,5 +1,5 @@
 class QuestionRepository
-  def self.find_by_job_id(job_id)
+  def self.find_by_job(job_id)
     Question.where(job_id: job_id).map { |question| QuestionEntity.new(**question.attributes.symbolize_keys) }
   end
 
@@ -10,6 +10,6 @@ class QuestionRepository
 
   def self.create(params)
     question=Question.create(params)
-    QuestionEntity.new(**question.attributes.symbolize_keys) if question.perisisted?
+    QuestionEntity.new(**question.attributes.symbolize_keys) if question.persisted?
   end
 end

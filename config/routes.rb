@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :jobs, only: [:index,:show,:create] do
     resources :review, only: [:index,:create]
-    resources :questions, only:[:index,:create]do
-      resources :answers,only: [:create]
+    resources :questions, only:[:index,:show,:create]do
+      resources :answers,only: [:index,:create]
     end
   end
 end

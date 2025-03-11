@@ -1,7 +1,6 @@
 class AnswerUseCase
   def self.create_answer(params)
-    answer = AnswerRepository.create(params)
-    AnswerEntity.new(answer.attributes.symbolize_keys) if answer.persisted?
+    AnswerRepository.create(params)
   end
 
   def self.get_answer_detail(id)
