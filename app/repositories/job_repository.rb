@@ -1,11 +1,11 @@
 class JobRepository
   def self.find_all
-    Job.all.map{|job| JobEntity.new(job.attributes.symbolize_keys)}
+    Job.all.map{|job| JobEntity.new(**job.attributes.symbolize_keys)}
   end
   
   def self.find_by(id)
     job=Job.find_by(id: id)
-    job ? JobEntity.new(job.attributes.symbolize_keys): nil
+    job ? JobEntity.new(**job.attributes.symbolize_keys): nil
   end
 
   def self.create(params)
